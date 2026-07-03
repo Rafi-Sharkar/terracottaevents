@@ -1,0 +1,30 @@
+api.nestjsstarter.com {
+  tls internal # TODO: remove in production
+
+  reverse_proxy /socket.io* api:5000
+
+  handle /files/* {
+    uri strip_prefix /files
+    root * /app/uploads
+    file_server
+  }
+
+  @api {
+    not path /socket.io*
+    not path /files/*
+  }
+
+  handle @api {
+    # Allow up to 500MB upload
+    request_body {
+      max_size 500MB
+    }
+
+    reverse_proxy api:5000 {
+      header_up X-Real-IP {remote}
+      header_up X-Forwarded-For {remote}
+      header_up X-Forwarded-Proto {scheme}
+      header_up Host {host}
+    }
+  }
+}

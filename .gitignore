@@ -1,0 +1,68 @@
+# Compiled output
+/dist
+/build
+
+# Dependencies
+/node_modules
+.pnpm-store
+
+# Environment variables
+.env.*
+!.env.example
+.env
+
+nul
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log.json
+
+# Uploads / temp files
+uploads/
+temp/
+tmp/
+.temp
+.tmp
+
+# Test coverage
+/coverage
+/.nyc_output
+coverage.json
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Certificates & keys
+*.pem
+*.key
+*.crt
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+report.*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/
+
+# Batch scripts
+

@@ -1,0 +1,21 @@
+packages:
+  - "."
+
+allowBuilds:
+  '@firebase/util': false
+  '@nestjs/core': set this to true or false
+  '@prisma/engines': false
+  '@scarf/scarf': false
+  bcrypt: false
+  msgpackr-extract: false
+  prisma: false
+  protobufjs: false
+
+overrides:
+  fast-xml-parser: "^5.3.6"
+  protobufjs: "^7.5.5"
+  hono: "^4.12.4"
+  handlebars: "^4.7.9"
+  serialize-javascript: "^7.0.3"
+  "@hono/node-server": "^2.0.4"
+  tmp: "^0.2.7"

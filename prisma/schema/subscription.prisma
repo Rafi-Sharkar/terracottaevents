@@ -1,0 +1,101 @@
+model Plan {
+    id    String @id @default(uuid())
+    name  String @unique @default("")
+    price String @default("")
+
+    isMostPopular Boolean      @default(false)
+    BillingCycle  BillingCycle @default(ONE_TIME)
+    
+    //--------- Relations-----------
+    Benefitss      PlanBenefits[]
+    booking Booking[]
+    
+    createdAt     DateTime       @default(now())
+    updatedAt     DateTime       @default(now()) @updatedAt
+
+    @@map("plans")
+}
+
+model Benefits {
+    id        String        @id @default(uuid())
+    name      String        @unique
+    createdAt DateTime      @default(now())
+    plans     PlanBenefits[]
+
+    @@map("Benefits")
+}
+
+model PlanBenefits {
+    id String @id @default(uuid())
+
+    planId    String
+    BenefitsId String
+
+    plan    Plan    @relation(fields: [planId], references: [id], onDelete: Cascade)
+    Benefits Benefits @relation(fields: [BenefitsId], references: [id], onDelete: Cascade)
+
+    @@unique([planId, BenefitsId])
+    @@map("plan_Benefits")
+}
+
+model Booking {
+    id String @id @default(uuid())
+
+    // booking status
+    status BookingStatus @default(PENDING)
+
+    // discount example: 25%
+    discount Float @default(0.0)
+
+    // booking date and time
+    bookingDate DateTime
+    paymentDate DateTime
+    checkInDate DateTime
+    checkOutDate DateTime
+
+    // payment method
+    paymentMethod PaymentMethod @default(PHYSICAL)
+
+    // Transaction ID
+    bkashTransactionId String?
+    nagadTransactionId String?
+    bankTransactionId String?
+
+    // booking user
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String
+
+    // booking plan
+    plan Plan @relation(fields: [planId], references: [id])
+    planId String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+
+    @@map("bookings")
+    @@index(userId)
+    @@index(planId)
+}
+
+enum BillingCycle {
+    ONE_TIME
+    MONTHLY
+    YEARLY
+}
+
+enum BookingStatus {
+    PENDING
+    PAID
+    NOT_PAID
+    PAYMENT_CONFIRM
+    PAYMENT_FAILED
+    CHECK_IN_COMPLETED
+    CHECK_OUT_COMPLETED
+}
+
+enum PaymentMethod {
+    PHYSICAL
+    BKASH
+    NAGAD
+    BANK_TRANSACTION
+}

@@ -1,0 +1,14 @@
+#!/bin/sh
+echo "Running security checks before commit...\n"
+
+node scripts/scan-malware.mjs || { echo "Commit blocked: malware patterns detected."; exit 1; }
+
+node scripts/integrity-check.mjs check || {
+  echo ""
+  echo "Commit blocked: critical config file changed since last integrity update."
+  echo "  - If YOU changed it intentionally: run 'pnpm integrity:update' first."
+  echo "  - If unexpected: inspect the file for injected code."
+  exit 1
+}
+
+echo "Security checks passed.\n"

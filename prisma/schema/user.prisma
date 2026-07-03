@@ -1,0 +1,63 @@
+model User {
+  id String @id @default(uuid())
+
+  // Identity
+  name            String
+  username        String? @unique
+  email           String  @unique
+  password        String
+
+  // profile photos
+  profilePicture String?
+  coverPhoto     String?
+
+  role            UserRole   @default(USER)
+  status          UserStatus @default(ACTIVE)
+  isVerified      Boolean    @default(false)
+  isOnline        Boolean    @default(false)
+  tokens          Int        @default(5)
+  stripeCustomerId String?   @unique
+
+
+  //------------ Activity Tracking ------------
+  lastLoginAt     DateTime?
+  lastActiveAt    DateTime?
+
+  // subscription
+  booking          Booking[]
+
+
+  // Auth provider
+  authProvider  AuthProvider   @default(EMAIL)
+  googleId      String?        @unique
+
+  // Auth tokens
+  refreshTokens  RefreshToken[]
+  otps           UserOtp[]
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @default(now()) @updatedAt
+
+  @@map("users")
+  @@index(email)
+  @@index(googleId)
+  @@index(username)
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  DELETED
+}
+
+enum AuthProvider {
+  EMAIL
+  GOOGLE
+  APPLE
+}
