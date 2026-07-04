@@ -1,0 +1,1 @@
+{"version":3,"file":"upload-file-request.dto.js","sourceRoot":"","sources":["../../../../../src/main/upload-s3/dto/upload-file-request.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAE9C,MAAa,qBAAqB;IAOhC,KAAK,CAAwB;CAC9B;AARD,sDAQC;AADC;IANC,IAAA,qBAAW,EAAC;QACX,IAAI,EAAE,QAAQ;QACd,MAAM,EAAE,QAAQ;QAChB,WAAW,EAAE,mBAAmB;QAChC,OAAO,EAAE,IAAI;KACd,CAAC;;oDAC2B"}

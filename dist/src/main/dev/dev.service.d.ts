@@ -1,0 +1,88 @@
+import { PrismaService } from '../../lib/prisma/prisma.service';
+export declare class DevService {
+    private readonly prisma;
+    constructor(prisma: PrismaService);
+    getAllUsers(): Promise<import("@/common/utils/response.util").TResponse<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        status: import("../../../prisma/generated/enums").UserStatus;
+        username: string | null;
+        email: string;
+        password: string;
+        profilePicture: string | null;
+        coverPhoto: string | null;
+        role: import("../../../prisma/generated/enums").UserRole;
+        isVerified: boolean;
+        isOnline: boolean;
+        tokens: number;
+        stripeCustomerId: string | null;
+        lastLoginAt: Date | null;
+        lastActiveAt: Date | null;
+        authProvider: import("../../../prisma/generated/enums").AuthProvider;
+        googleId: string | null;
+    }[]>>;
+    deleteUser(userId: string): Promise<import("@/common/utils/response.util").TResponse<null>>;
+    addTokens(userId: string, tokens: number): Promise<import("@/common/utils/response.util").TResponse<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        status: import("../../../prisma/generated/enums").UserStatus;
+        username: string | null;
+        email: string;
+        password: string;
+        profilePicture: string | null;
+        coverPhoto: string | null;
+        role: import("../../../prisma/generated/enums").UserRole;
+        isVerified: boolean;
+        isOnline: boolean;
+        tokens: number;
+        stripeCustomerId: string | null;
+        lastLoginAt: Date | null;
+        lastActiveAt: Date | null;
+        authProvider: import("../../../prisma/generated/enums").AuthProvider;
+        googleId: string | null;
+    }>>;
+    subscribeUser(userId: string, planId: string): Promise<import("@/common/utils/response.util").TResponse<{
+        subscription: {
+            id: string;
+            userId: string;
+            createdAt: Date;
+            updatedAt: Date;
+            planId: string;
+            status: import("../../../prisma/generated/enums").BookingStatus;
+            discount: number;
+            bookingDate: Date;
+            paymentDate: Date;
+            checkInDate: Date;
+            checkOutDate: Date;
+            paymentMethod: import("../../../prisma/generated/enums").PaymentMethod;
+            bkashTransactionId: string | null;
+            nagadTransactionId: string | null;
+            bankTransactionId: string | null;
+        };
+        user: {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            status: import("../../../prisma/generated/enums").UserStatus;
+            username: string | null;
+            email: string;
+            password: string;
+            profilePicture: string | null;
+            coverPhoto: string | null;
+            role: import("../../../prisma/generated/enums").UserRole;
+            isVerified: boolean;
+            isOnline: boolean;
+            tokens: number;
+            stripeCustomerId: string | null;
+            lastLoginAt: Date | null;
+            lastActiveAt: Date | null;
+            authProvider: import("../../../prisma/generated/enums").AuthProvider;
+            googleId: string | null;
+        };
+    }>>;
+}

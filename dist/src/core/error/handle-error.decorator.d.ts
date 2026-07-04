@@ -1,0 +1,1 @@
+export declare function HandleError(customMessage?: string, record?: string): <T>(_target: T, _propertyName: string, descriptor: TypedPropertyDescriptor<(...args: unknown[]) => Promise<any>>) => void;
