@@ -7,7 +7,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "nest start --watch",
-    "build": "npx nest build",
+    "build": "echo 'Skipping build on server, using prebuilt dist'",
+    "build:local": "npx nest build",
     "start": "npx prisma generate && npx prisma migrate deploy && node dist/src/main.js",
     "start:debug": "nest start --debug --watch",
     "lint": "eslint .",
