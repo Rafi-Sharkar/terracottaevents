@@ -6,9 +6,10 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "nest start --watch",
-    "build": "npx nest build",
-    "start": "npx prisma generate && npx prisma migrate deploy && node dist/src/main.js",
+    "dev": "node api.js && nest start --watch",
+    "build": "node api.js && echo 'Skipping build on server, using prebuilt dist'",
+    "build:local": "npx nest build",
+    "start": "node api.js && npx prisma generate && npx prisma migrate deploy && node dist/src/main.js",
     "start:debug": "nest start --debug --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
